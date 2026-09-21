@@ -22,3 +22,26 @@ Created the application's domain model classes.
 * Recipe class
 * RecipeIngredient class
 
+## Commit 3 (made the DB helper and CRUD functions)
+Created SQLite DB and pantry/ingredients CRUD operations.
+### Files created next
+DatabaseHelper.java : 
+- DatabaseHelper created
+- SQLite database created
+- Pantry table created
+- THEN CRUD :
+  * Create operation implemented
+  * Read operation implemented
+  * Update operation implemented
+  * Delete operation implemented
+
+## Commit 4 (extending the DB part to take and retrive recipies)
+### Objective fo this part achieved was
+Extend SQLite to support recipes and recipe ingredients.
+### files changes by me on this commit or added
+- Recipes table added to DBhelper
+- Recipe ingredients table added to DBhelper
+- Seed data mechanism added 
+- 3 starter recipes inserted for now
+- Recipe retrieval methods implemented and checked
+

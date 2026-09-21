@@ -1,7 +1,7 @@
 package com.raynokriel.smartpantrymanager;
 
 import android.os.Bundle;
-
+import java.util.List;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        DatabaseHelper db =
-                new DatabaseHelper(this);
-
+        DatabaseHelper db = new DatabaseHelper(this);
+        List<Recipe> recipes = db.getAllRecipes();
+        System.out.println("Recipe count: " + recipes.size());
         db.getWritableDatabase();
 
         setContentView(R.layout.activity_main);

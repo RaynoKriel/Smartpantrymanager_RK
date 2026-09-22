@@ -45,3 +45,17 @@ Extend SQLite to support recipes and recipe ingredients.
 - 3 starter recipes inserted for now
 - Recipe retrieval methods implemented and checked
 
+## Commit 5 (added the first UI xml data for a simple nested view)
+### Objective
+Build the Pantry List user interface to display the items in the 
+recyclerview. Using both contraint and linear view placements
+
+### Completed
+
+- activity_main.xml
+- item_pantry.xml
+- PantryAdapter.java
+- RecyclerView implemented
+- Empty pantry message implemented
+- Pantry loaded from SQLite
+

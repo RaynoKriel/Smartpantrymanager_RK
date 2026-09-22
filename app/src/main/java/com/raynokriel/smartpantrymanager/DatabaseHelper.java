@@ -15,7 +15,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      //DB name stored on the device. (SQlite)
     private static final String DATABASE_NAME = "smart_pantry.db";
     //DBversion incase DB changes
-    private static final int DATABASE_VERSION = 2;
+    //changes to version 3 after final recipies added at the end from my home recipy book.
+    private static final int DATABASE_VERSION = 3;
 
     // table 1:  Pantry table
     public static final String TABLE_PANTRY = "pantry";

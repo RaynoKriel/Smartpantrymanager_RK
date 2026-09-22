@@ -15,9 +15,12 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+    //vairable for the ingredient selected (by id for the intent to work)
+    public static final String EXTRA_ITEM_ID = "extra_item_id";
     private DatabaseHelper dbHelper;
     private PantryAdapter adapter;
     private TextView emptyView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,11 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerPantry);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new PantryAdapter(new ArrayList<>());
+        adapter = new PantryAdapter(new ArrayList<>(),item -> {
+            Intent intent = new Intent(MainActivity.this,AddEditIngredientActivity.class);
+            intent.putExtra(EXTRA_ITEM_ID, item.getId());
+            startActivity(intent);
+            });
         recyclerView.setAdapter(adapter);
         // linking the floating button to the Add/Edit view via INTENT
         FloatingActionButton fab = findViewById(R.id.fabAddIngredient);

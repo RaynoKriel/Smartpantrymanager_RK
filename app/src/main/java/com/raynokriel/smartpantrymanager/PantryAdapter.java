@@ -13,8 +13,14 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
     //this will build the list of items to push to the recycler view line by line
     //from the list of items.
     private List<PantryItem> items;
-    public PantryAdapter(List<PantryItem> items) {
+    private final OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(PantryItem item);
+    }
+    public PantryAdapter(List<PantryItem> items, OnItemClickListener listener) {
         this.items = items;
+        this.listener = listener;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -40,6 +46,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
         PantryItem item = items.get(position);
         holder.name.setText(item.getName());
         holder.quantity.setText(item.getQuantity() + " " + item.getUnit());
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
     }
     //getter and setter for items (the count and the setting the item to the list)
     @Override

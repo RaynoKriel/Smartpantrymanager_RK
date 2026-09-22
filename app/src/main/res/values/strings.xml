@@ -13,5 +13,13 @@
     <string name="error_invalid_number">Enter a valid quantity</string>
     <!-- confirm text-->
     <string name="item_added">Ingredient added</string>
+    <!-- adding the strings for the edit delete or cancel command -->
+    <string name="title_edit_ingredient">Edit Ingredient</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="item_updated">Ingredient updated</string>
+    <string name="item_deleted">Ingredient deleted</string>
+    <string name="delete_ingredient">Delete Ingredient</string>
+    <string name="delete_confirm_message">Are you sure you want to delete this ingredient?</string>
 
 </resources>

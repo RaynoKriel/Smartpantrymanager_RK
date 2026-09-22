@@ -23,6 +23,8 @@
         </activity>
         <!-- adding the new screen for edit or adding ingredients -->
         <activity android:name=".AddEditIngredientActivity"/>
+        <!-- adding the recipy suggestion screen -->
+        <activity android:name=".SuggestedRecipesActivity" />
     </application>
 
 </manifest>

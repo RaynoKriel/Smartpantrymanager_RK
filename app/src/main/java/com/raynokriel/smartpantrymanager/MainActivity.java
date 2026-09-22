@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +38,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         // linking the floating button to the Add/Edit view via INTENT
         FloatingActionButton fab = findViewById(R.id.fabAddIngredient);
+
+        //click the "+" once and you can add items/ngredients
         fab.setOnClickListener(v -> startActivity(new Intent(
                 MainActivity.this, AddEditIngredientActivity.class)));
+
+        //press the "+" long and it will open the suggested recipy screen
+        fab.setOnLongClickListener(v -> {
+            startActivity(new Intent(MainActivity.this,SuggestedRecipesActivity.class));
+            return true;
+        });
     }
 
     //when switching between screens like after adding an item it refreshes

@@ -196,8 +196,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long id = cursor.getLong(cursor.getColumnIndexOrThrow(COL_RECIPE_ID));
                 String name =cursor.getString(cursor.getColumnIndexOrThrow(COL_RECIPE_NAME));
                 String steps = cursor.getString(cursor.getColumnIndexOrThrow(COL_RECIPE_STEPS));
+
                 Recipe recipe = new Recipe(id, name, steps);
+                recipe.setIngredients(getIngredientsForRecipe(db,id));
                 recipes.add(recipe);
+
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -219,12 +222,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_RECIPE_NAME));
             String steps =cursor.getString(cursor.getColumnIndexOrThrow(COL_RECIPE_STEPS));
-            recipe = new Recipe(recipeId,name,steps);
+            recipe = new Recipe(recipeId, name, steps);
+            recipe.setIngredients(getIngredientsForRecipe(db,recipeId));
         }
         cursor.close();
         return recipe;
     }
+    //gets all items/ingredients for a recipy
+    private List<RecipeIngredient> getIngredientsForRecipe(SQLiteDatabase db, long recipeId) {
+        List<RecipeIngredient> ingredients = new ArrayList<>();
+        Cursor cursor =db.query(TABLE_RECIPE_INGREDIENTS,null,COL_RI_RECIPE_ID + "=?",
+                        new String[]{
+                                String.valueOf(recipeId)
+                        },
+                        null,null,COL_RI_ID + " ASC");
 
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(COL_RI_NAME));
+                double quantity = cursor.getDouble(cursor.getColumnIndexOrThrow(COL_RI_QTY));
+                String unit = cursor.getString(cursor.getColumnIndexOrThrow(COL_RI_UNIT));
+                ingredients.add( new RecipeIngredient(name, quantity, unit));
+            }
+            while (cursor.moveToNext());
+        }
+        cursor.close();
+        return ingredients;
+    }
 
 
 

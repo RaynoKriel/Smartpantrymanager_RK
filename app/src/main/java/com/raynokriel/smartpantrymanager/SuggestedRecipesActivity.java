@@ -1,0 +1,47 @@
+package com.raynokriel.smartpantrymanager;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SuggestedRecipesActivity extends AppCompatActivity {
+    private DatabaseHelper dbHelper;
+    private RecipeAdapter adapter;
+    private TextView emptyView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_suggested_recipes);
+        dbHelper = new DatabaseHelper(this);
+        emptyView = findViewById(R.id.textEmptySuggestions);
+        RecyclerView recyclerView = findViewById(R.id.recyclerSuggestedRecipes);
+        recyclerView.setLayoutManager( new LinearLayoutManager(this));
+        adapter = new RecipeAdapter(new ArrayList<>());
+        recyclerView.setAdapter(adapter);
+    }
+    //on screen switch or refresh
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadSuggestions();
+    }
+    //suggested matching recipies/items etc in lists
+    private void loadSuggestions() {
+        List<PantryItem> pantry = dbHelper.getAllPantryItems();
+        List<Recipe> allRecipes = dbHelper.getAllRecipes();
+        List<Recipe> suggested = new ArrayList<>();
+        for (Recipe recipe : allRecipes) {
+            if (MatchingUtils.canMake(recipe,pantry)) {
+                suggested.add(recipe);
+            }
+        }
+        adapter.setRecipes(suggested);
+        emptyView.setVisibility(suggested.isEmpty() ? View.VISIBLE : View.GONE);
+    }
+}

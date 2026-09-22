@@ -25,6 +25,8 @@
         <activity android:name=".AddEditIngredientActivity"/>
         <!-- adding the recipy suggestion screen -->
         <activity android:name=".SuggestedRecipesActivity" />
+        <!-- adding the settings screen -->
+        <activity android:name=".SettingsActivity" />
     </application>
 
 </manifest>

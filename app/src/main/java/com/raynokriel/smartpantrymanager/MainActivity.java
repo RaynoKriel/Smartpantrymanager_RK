@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseNavActivity {
     //vairable for the ingredient selected (by id for the intent to work)
     public static final String EXTRA_ITEM_ID = "extra_item_id";
     private DatabaseHelper dbHelper;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setTitle("My Pantry");
         dbHelper = new DatabaseHelper(this);
         emptyView = findViewById(R.id.textEmptyPantry);
         RecyclerView recyclerView = findViewById(R.id.recyclerPantry);
@@ -43,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(v -> startActivity(new Intent(
                 MainActivity.this, AddEditIngredientActivity.class)));
 
+       /** testing done and toolbar added for easier access to recipies
         //press the "+" long and it will open the suggested recipy screen
         fab.setOnLongClickListener(v -> {
             startActivity(new Intent(MainActivity.this,SuggestedRecipesActivity.class));
             return true;
         });
+        */
     }
 
     //when switching between screens like after adding an item it refreshes

@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+import android.view.MenuItem;
 
-public class SuggestedRecipesActivity extends AppCompatActivity {
+public class SuggestedRecipesActivity extends BaseNavActivity {
     private DatabaseHelper dbHelper;
     private RecipeAdapter adapter;
     private TextView emptyView;
@@ -24,6 +25,20 @@ public class SuggestedRecipesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
         adapter = new RecipeAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
+        //adding the back button as well to make navigation easier (not using menu the whole time)
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+    //adding the menu items to the screen
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     //on screen switch or refresh
     @Override

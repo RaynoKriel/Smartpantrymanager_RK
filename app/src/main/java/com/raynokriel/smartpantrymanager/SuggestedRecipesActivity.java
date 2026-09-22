@@ -1,5 +1,6 @@
 package com.raynokriel.smartpantrymanager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ public class SuggestedRecipesActivity extends BaseNavActivity {
     private DatabaseHelper dbHelper;
     private RecipeAdapter adapter;
     private TextView emptyView;
+    public static final String EXTRA_RECIPE_ID = "extra_recipe_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,12 @@ public class SuggestedRecipesActivity extends BaseNavActivity {
         emptyView = findViewById(R.id.textEmptySuggestions);
         RecyclerView recyclerView = findViewById(R.id.recyclerSuggestedRecipes);
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
-        adapter = new RecipeAdapter(new ArrayList<>());
+        //select a recipy and go to detail screen
+        adapter = new RecipeAdapter( new ArrayList<>(),recipe -> {
+            Intent intent = new Intent(SuggestedRecipesActivity.this, RecipeDetailActivity.class);
+            intent.putExtra(EXTRA_RECIPE_ID, recipe.getId());
+            startActivity(intent);
+            });
         recyclerView.setAdapter(adapter);
         //adding the back button as well to make navigation easier (not using menu the whole time)
         if (getSupportActionBar() != null) {

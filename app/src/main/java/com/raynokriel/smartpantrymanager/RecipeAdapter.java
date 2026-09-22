@@ -9,10 +9,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 //same adaptor that was made for patry items, but now for making the recipy object
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
+public class RecipeAdapter
+        extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
+
+    public interface OnRecipeClickListener {
+
+        void onRecipeClick(
+                Recipe recipe);
+    }
+
     private List<Recipe> recipes;
-    public RecipeAdapter(List<Recipe> recipes) {
+
+    private final OnRecipeClickListener listener;
+    public RecipeAdapter(
+            List<Recipe> recipes,
+            OnRecipeClickListener listener) {
+
         this.recipes = recipes;
+        this.listener = listener;
     }
 
     public void setRecipes(List<Recipe> recipes) {
@@ -50,5 +64,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         Recipe recipe = recipes.get(position);
         holder.name.setText(recipe.getName());
         holder.subtitle.setText(recipe.getIngredients().size() + " ingredients");
+        holder.itemView.setOnClickListener(v -> listener.onRecipeClick(recipe));
     }
 }

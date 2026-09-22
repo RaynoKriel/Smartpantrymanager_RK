@@ -27,6 +27,8 @@
         <activity android:name=".SuggestedRecipesActivity" />
         <!-- adding the settings screen -->
         <activity android:name=".SettingsActivity" />
+        <!-- adding the detail screen for recipies -->
+        <activity android:name=".RecipeDetailActivity" />
     </application>
 
 </manifest>

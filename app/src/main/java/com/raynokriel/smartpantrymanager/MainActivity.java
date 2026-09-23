@@ -8,9 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
+import android.widget.Toast;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class MainActivity extends BaseNavActivity {
@@ -63,15 +66,13 @@ public class MainActivity extends BaseNavActivity {
     }
     //method for checking the dates using the function in settings activity
     private void checkExpiryNotifications() {
-        SharedPreferences prefs =getSharedPreferences("smart_pantry_settings", MODE_PRIVATE);
-        boolean enabled = prefs.getBoolean(SettingsActivity.PREF_EXPIRY_ALERTS, false);
-        if (!enabled) {
-            return;
-        }
-
-        NotificationHelper.createChannel(this);
-        ExpiryChecker.checkExpiryDates(this,dbHelper.getAllPantryItems());
+        SharedPreferences prefs = getSharedPreferences("smart_pantry_settings",MODE_PRIVATE);
+        boolean enabled = prefs.getBoolean(SettingsActivity.PREF_EXPIRY_ALERTS,false);
+        if (!enabled) {return;}
+        Toast.makeText(this,"Checking expiries...", Toast.LENGTH_LONG).show();
+        ExpiryChecker.checkExpiryDates(this, dbHelper.getAllPantryItems());
     }
+
     //Load from DB
     private void loadPantry() {
         List<PantryItem> items = dbHelper.getAllPantryItems();

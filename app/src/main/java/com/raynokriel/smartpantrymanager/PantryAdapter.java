@@ -6,8 +6,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import android.graphics.Color;
+import java.util.concurrent.TimeUnit;
 
 public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder> {
     //this will build the list of items to push to the recycler view line by line
@@ -49,8 +53,24 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
         holder.name.setText(item.getName());
         holder.quantity.setText(item.getQuantity() + " " + item.getUnit());
         holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
+        //making the expiry date red only if it is in range
         if (item.getExpiryDate() != null && !item.getExpiryDate().isEmpty()) {
-            holder.expiry.setText("Expires: "+ item.getExpiryDate());
+            holder.expiry.setText("Expires: " + item.getExpiryDate());
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Date expiryDate = format.parse(item.getExpiryDate());
+
+                if (expiryDate != null) {
+                    long diffMillis = expiryDate.getTime() - new Date().getTime();
+                    long daysRemaining = TimeUnit.MILLISECONDS.toDays(diffMillis);
+                    if (daysRemaining <= 3) {
+                        holder.expiry.setTextColor(Color.RED);
+                    } else {
+                        holder.expiry.setTextColor(Color.BLACK);
+                    }
+                }
+            } catch (Exception ignored) {
+            }
         } else {
             holder.expiry.setText("");
         }

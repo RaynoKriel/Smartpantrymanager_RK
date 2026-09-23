@@ -3,7 +3,18 @@
     <style name="Base.Theme.SmartPantryManager" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/royal_blue</item>
+        <item name="colorPrimaryContainer">@color/royal_blue_dark</item>
+        <item name="android:statusBarColor">@color/royal_blue_dark</item>
+        <item name="toolbarStyle">@style/CustomToolbar</item>
     </style>
 
     <style name="Theme.SmartPantryManager" parent="Base.Theme.SmartPantryManager" />
+
+    <style name="CustomToolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background"> @color/royal_blue </item>
+        <item name="titleTextColor"> @android:color/white  </item>
+        <item name="subtitleTextColor">@android:color/white</item>
+    </style>
+
 </resources>

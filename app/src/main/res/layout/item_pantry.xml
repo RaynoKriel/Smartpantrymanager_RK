@@ -5,10 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_margin="8dp"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:elevation="4dp">
     <!--the 2 fields for each item name & QTY -->
     <TextView
         android:id="@+id/textIngredientName"
+        android:textColor="@color/royal_blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -22,6 +26,7 @@
 
     <TextView
         android:id="@+id/textIngredientExpiry"
+        android:textColor="#D32F2F"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

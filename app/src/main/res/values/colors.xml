@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- putting in my custom colors -->
+    <color name="royal_blue">#4169E1</color>
+    <color name="royal_blue_dark">#274BB8</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_shadow">#DDDDDD</color>
 </resources>

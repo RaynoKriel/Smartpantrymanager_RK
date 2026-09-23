@@ -26,10 +26,12 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView quantity;
+        TextView expiry;
         ViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.textIngredientName);
             quantity = view.findViewById(R.id.textIngredientQuantity);
+            expiry = view.findViewById(R.id.textIngredientExpiry);
         }
     }
 
@@ -47,6 +49,11 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
         holder.name.setText(item.getName());
         holder.quantity.setText(item.getQuantity() + " " + item.getUnit());
         holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
+        if (item.getExpiryDate() != null && !item.getExpiryDate().isEmpty()) {
+            holder.expiry.setText("Expires: "+ item.getExpiryDate());
+        } else {
+            holder.expiry.setText("");
+        }
     }
     //getter and setter for items (the count and the setting the item to the list)
     @Override

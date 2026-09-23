@@ -1,5 +1,6 @@
 package com.raynokriel.smartpantrymanager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -57,8 +58,20 @@ public class MainActivity extends BaseNavActivity {
     protected void onResume() {
         super.onResume();
         loadPantry();
+        //adding the notification check here as well on reload/switches
+        checkExpiryNotifications();
     }
+    //method for checking the dates using the function in settings activity
+    private void checkExpiryNotifications() {
+        SharedPreferences prefs =getSharedPreferences("smart_pantry_settings", MODE_PRIVATE);
+        boolean enabled = prefs.getBoolean(SettingsActivity.PREF_EXPIRY_ALERTS, false);
+        if (!enabled) {
+            return;
+        }
 
+        NotificationHelper.createChannel(this);
+        ExpiryChecker.checkExpiryDates(this,dbHelper.getAllPantryItems());
+    }
     //Load from DB
     private void loadPantry() {
         List<PantryItem> items = dbHelper.getAllPantryItems();

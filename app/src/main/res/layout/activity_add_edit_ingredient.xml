@@ -39,6 +39,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_unit"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expiry Date" />
+    <!-- using thsi to get the open datepicker when clicked -->
+        <EditText
+            android:id="@+id/editExpiryDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:clickable="true"
+            android:hint="Select Expiry Date" />
+
         <!-- adding the spinner makes it easier to get the
         predifined list of items not free entered text -->
         <Spinner

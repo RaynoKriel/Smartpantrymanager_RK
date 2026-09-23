@@ -10,7 +10,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
-
+import android.app.DatePickerDialog;
+import java.util.Calendar;
+import java.util.Locale;
 public class AddEditIngredientActivity extends AppCompatActivity {
     //varaibles
     private DatabaseHelper dbHelper;
@@ -19,6 +21,8 @@ public class AddEditIngredientActivity extends AppCompatActivity {
     private Spinner spinnerUnit;
     private long itemId = -1;
     private Button deleteButton;
+    private EditText editExpiryDate;
+
 
     //building the content and setting values if they exists for editing
     @Override
@@ -43,6 +47,9 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,R.array.units_array, android.R.layout.simple_spinner_item);
         spinnerUnit.setAdapter(adapter);
+        //adding the forgotten date now
+        editExpiryDate = findViewById(R.id.editExpiryDate);
+        editExpiryDate.setOnClickListener(v -> showDatePicker());
         itemId = getIntent().getLongExtra(MainActivity.EXTRA_ITEM_ID,-1);
 
         if (itemId != -1) {
@@ -58,6 +65,18 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         }
 
     }
+    //date picker
+    private void showDatePicker() {
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog dialog = new DatePickerDialog(this,(view,year,
+                         month,dayOfMonth) -> {
+            String date = String.format(Locale.getDefault(),"%04d-%02d-%02d",
+                                            year,month + 1,dayOfMonth);
+            editExpiryDate.setText(date);
+            },calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
+    }
+    //back button option
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -72,6 +91,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
             return;
         }
         editName.setText(item.getName());
+        editExpiryDate.setText(item.getExpiryDate());
         editQuantity.setText(String.valueOf(item.getQuantity()));
     }
     private void saveItem() {
@@ -95,9 +115,11 @@ public class AddEditIngredientActivity extends AppCompatActivity {
             editQuantity.setError(getString(R.string.error_invalid_number));
             return;
         }
+        String expiryDate = editExpiryDate.getText().toString().trim();
+
         //building the item to be saved
         PantryItem item = new PantryItem(0, name, quantity,
-                spinnerUnit.getSelectedItem().toString(),"");
+                spinnerUnit.getSelectedItem().toString(), expiryDate);
 
         //using the DB insert method from CRUD now
         if (itemId == -1) {

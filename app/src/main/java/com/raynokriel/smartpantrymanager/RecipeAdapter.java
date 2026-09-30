@@ -13,18 +13,14 @@ public class RecipeAdapter
         extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
 
     public interface OnRecipeClickListener {
-
-        void onRecipeClick(
-                Recipe recipe);
+        void onRecipeClick(Recipe recipe);
     }
-
+    //list variable
     private List<Recipe> recipes;
 
     private final OnRecipeClickListener listener;
-    public RecipeAdapter(
-            List<Recipe> recipes,
-            OnRecipeClickListener listener) {
-
+    //creating the list of items that will display in the recycler view
+    public RecipeAdapter(List<Recipe> recipes,OnRecipeClickListener listener) {
         this.recipes = recipes;
         this.listener = listener;
     }
@@ -41,16 +37,15 @@ public class RecipeAdapter
         ViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.textRecipeName);
-
             subtitle = view.findViewById(R.id.textRecipeSubtitle);
         }
     }
-
+    //a quick count on the items needed to display as ingredients
     @Override
     public int getItemCount() {
         return recipes.size();
     }
-
+    //creates the view layout that displays from the view holder above
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,int viewType) {
@@ -58,7 +53,7 @@ public class RecipeAdapter
                 R.layout.item_recipe,parent,false);
         return new ViewHolder(view);
     }
-
+    //binds the data to the recylcer view and adds the name, ingredients and click
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,int position) {
         Recipe recipe = recipes.get(position);

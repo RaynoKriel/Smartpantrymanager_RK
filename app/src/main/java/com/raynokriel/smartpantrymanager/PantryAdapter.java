@@ -18,15 +18,16 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
     //from the list of items.
     private List<PantryItem> items;
     private final OnItemClickListener listener;
-
+    //click takes ID and opens a edit screen in the mainjava intent
     public interface OnItemClickListener {
         void onItemClick(PantryItem item);
     }
+    //creating the list of items (contructor)
     public PantryAdapter(List<PantryItem> items, OnItemClickListener listener) {
         this.items = items;
         this.listener = listener;
     }
-
+    //item descriptions displayed
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView quantity;
@@ -38,7 +39,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
             expiry = view.findViewById(R.id.textIngredientExpiry);
         }
     }
-
+    //creating the view and layout of items showing
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,7 +47,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.ViewHolder
                 R.layout.item_pantry, parent,false);
         return new ViewHolder(view);
     }
-
+    //binding data to the view
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PantryItem item = items.get(position);

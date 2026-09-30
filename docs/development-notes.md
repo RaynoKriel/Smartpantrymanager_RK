@@ -367,3 +367,11 @@ readability, and usability.
 - Royal Blue theme.
 - Card-style pantry and recipe rows.
 - Conditional expiry highlighting.
+
+## Commit 14 (readme for dev inserted)
+added a development commit readme as well 
+to explain my commits.
+
+### Files added or updated
+
+- `development-notes.md`

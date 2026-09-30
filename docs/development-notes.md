@@ -1,12 +1,9 @@
 # Smart Pantry Manager Development Notes
-
 ## Commit 1 (Project Setup)
+Create the project foundation and 
+configure source control.
 
-### Objective
-
-Create the project foundation and configure source control.
-
-### Created the startup
+### Created the startup and setup of the app and Github
 
 - Android Studio project created.
 - Pixel 8 emulator created and verified.
@@ -19,10 +16,8 @@ Create the project foundation and configure source control.
 ---
 
 ## Commit 2 (Domain Model Classes)
-
-### Objective
-
-Create the application's domain model classes and constructors.
+Create the application's domain model classes and 
+constructors.
 
 ### Files created
 
@@ -30,7 +25,7 @@ Create the application's domain model classes and constructors.
 - `Recipe.java`
 - `RecipeIngredient.java`
 
-### Completed
+### The first three models designed
 
 - Created the `PantryItem` model for ingredients stored in the user's pantry.
 - Created the `Recipe` model for recipe names, preparation steps, and ingredient collections.
@@ -40,16 +35,13 @@ Create the application's domain model classes and constructors.
 ---
 
 ## Commit 3 (SQLite Database Helper and Pantry CRUD)
-
-### Objective
-
 Create the SQLite database and pantry CRUD operations.
 
 ### Files created
 
 - `DatabaseHelper.java`
 
-### Completed
+### Original DB creation and First CRUD tables
 
 - Created the SQLite database helper.
 - Created the pantry table.
@@ -62,17 +54,15 @@ Create the SQLite database and pantry CRUD operations.
 ---
 
 ## Commit 4 (Recipe Database Layer)
-
-### Objective
-
-Extend SQLite to support recipes and recipe ingredients.
+Extend SQLite to support recipes and 
+recipe ingredients.
 
 ### Files added or updated
 
 - `DatabaseHelper.java`
 - `RecipeSeedData.java`
 
-### Completed
+### Updated the database to hold recipies as well.
 
 - Added the recipes table to the database.
 - Added the recipe ingredients table to the database.
@@ -85,10 +75,8 @@ Extend SQLite to support recipes and recipe ingredients.
 ---
 
 ## Commit 5 (Pantry List User Interface)
-
-### Objective
-
-Build the Pantry List user interface and display pantry records in a RecyclerView.
+Build the Pantry List user interface and 
+display pantry records in a RecyclerView.
 
 ### Files added or updated
 
@@ -97,7 +85,7 @@ Build the Pantry List user interface and display pantry records in a RecyclerVie
 - `PantryAdapter.java`
 - `MainActivity.java`
 
-### Completed
+### Completed the main screens for ingredients
 
 - Created the main pantry screen with ConstraintLayout.
 - Created the individual pantry row with LinearLayout.
@@ -110,10 +98,8 @@ Build the Pantry List user interface and display pantry records in a RecyclerVie
 ---
 
 ## Commit 6 (Add Ingredient and Create Operation)
-
-### Objective
-
-Implement the Add Ingredient screen and the Create part of CRUD.
+Implement the Add Ingredient screen and 
+the Create part of CRUD.
 
 ### Files added or updated
 
@@ -124,7 +110,7 @@ Implement the Add Ingredient screen and the Create part of CRUD.
 - `AndroidManifest.xml`
 - `MainActivity.java`
 
-### Completed
+### Completed the first 2 CRUD functions
 
 - Created the Add Ingredient form.
 - Added fields for ingredient name and quantity.
@@ -138,9 +124,6 @@ Implement the Add Ingredient screen and the Create part of CRUD.
 ---
 
 ## Commit 7 (Edit and Delete Pantry Items)
-
-### Objective
-
 Complete the Update and Delete parts of CRUD.
 
 ### Files updated
@@ -151,7 +134,7 @@ Complete the Update and Delete parts of CRUD.
 - `activity_add_edit_ingredient.xml`
 - `strings.xml`
 
-### Completed
+### Completed the additional 2 CRUD processes
 
 - Made RecyclerView pantry rows clickable.
 - Passed the selected pantry item ID through an Intent extra.
@@ -167,10 +150,8 @@ Complete the Update and Delete parts of CRUD.
 ---
 
 ## Commit 8 (Strict Recipe Matching and Suggested Recipes)
-
-### Objective
-
-Implement the application's core strict-matching rule and the Suggested Recipes screen.
+Implement the application's core strict-matching rule 
+and the Suggested Recipes screen.
 
 ### Files added or updated
 
@@ -182,7 +163,7 @@ Implement the application's core strict-matching rule and the Suggested Recipes 
 - `DatabaseHelper.java`
 - `AndroidManifest.xml`
 
-### Completed
+### Functionality implemented on this part.
 
 - Added a method to retrieve recipe ingredients from SQLite.
 - Updated recipe retrieval methods to attach ingredients to each recipe object.
@@ -197,10 +178,8 @@ Implement the application's core strict-matching rule and the Suggested Recipes 
 ---
 
 ## Commit 9 (Toolbar Navigation and Settings)
-
-### Objective
-
-Add shared application navigation and the Settings screen.
+Add shared application navigation 
+and the Settings screen for toggling checks.
 
 ### Files added or updated
 
@@ -213,7 +192,7 @@ Add shared application navigation and the Settings screen.
 - `SuggestedRecipesActivity.java`
 - `AndroidManifest.xml`
 
-### Completed
+### Completed the sections below
 
 - Created a shared `BaseNavActivity` for reusable navigation logic.
 - Added a toolbar overflow menu.
@@ -228,10 +207,7 @@ Add shared application navigation and the Settings screen.
 ---
 
 ## Commit 10 (Recipe Detail Screen)
-
-### Objective
-
-Add the required Recipe Detail screen.
+Added the required Recipe Detail screen to view steps etc.
 
 ### Files added or updated
 
@@ -241,7 +217,7 @@ Add the required Recipe Detail screen.
 - `SuggestedRecipesActivity.java`
 - `AndroidManifest.xml`
 
-### Completed
+### Completed the following functionality
 
 - Made suggested recipe rows clickable.
 - Passed the selected recipe ID through an Intent extra.
@@ -255,40 +231,28 @@ Add the required Recipe Detail screen.
 ---
 
 ## Commit 11 (Full Recipe Dataset)
-
-### Objective
-
-Expand the recipe collection to meet the assignment requirement of 15 to 20 recipes.
+Expanded the recipe collection to meet 
+the assignment requirement of 15 to 20 recipes.
+I added some home favorites to the list.
 
 ### Files updated
 
 - `RecipeSeedData.java`
 - `DatabaseHelper.java`
 
-### Completed
+### Added and changed the following
 
 Expanded the recipe collection to 18 recipes:
 
-- Scrambled Eggs
-- Cheese Toast
-- Garlic Rice
-- Tomato and Cheese Toasted Sandwich
-- Avocado Toast
-- Egg Fried Rice
-- Beef Tacos
-- Chicken Tacos
-- Pork Tacos
-- Beef Nachos
-- Chicken Nachos
-- Pork Nachos
-- Beef Enchiladas
-- Chicken Enchiladas
-- Pork Enchiladas
-- Beef Quesadilla
-- Chicken Quesadilla
-- Pork Quesadilla
+- Scrambled Eggs, Cheese Toast, Garlic Rice
+- Tomato and Cheese Toasted Sandwich, Avocado Toast
+- Egg Fried Rice, 
+- Beef Tacos, Chicken Tacos, Pork Tacos
+- Beef Nachos, Chicken Nachos, Pork Nachos 
+- Beef Enchiladas, Chicken Enchiladas, Pork Enchiladas 
+- Beef Quesadilla, Chicken Quesadilla, Pork Quesadilla
 
-Additional work:
+Some changes i made to get matching easier:
 
 - Simplified ingredient names for more reliable pantry matching.
 - Used consistent quantities and units.
@@ -299,10 +263,9 @@ Additional work:
 ---
 
 ## Commit 12 (Expiry Tracking and Alerts)
-
-### Objective
-
-Add expiry-date tracking and connect the Settings toggle to a working expiry-warning feature.
+Added expiry-date tracking and connected 
+the Settings toggle to a working expiry-warning feature
+saved in shared preferences.
 
 ### Files added or updated
 
@@ -314,14 +277,14 @@ Add expiry-date tracking and connect the Settings toggle to a working expiry-war
 - `ExpiryChecker.java`
 - `MainActivity.java`
 
-### Part A: SharedPreferences Toggle Persistence
+### Part A: SharedPreferences Toggle state saving
 
 - Connected the expiry-alert toggle to SharedPreferences.
 - Saved the toggle as a Boolean value.
 - Restored the saved value when the Settings screen reopened.
 - Verified that the toggle remained enabled or disabled after closing and reopening the app.
 
-### Part B: Expiry Date Tracking
+### Part B: Expiry Date Tracking and checking
 
 - Added an expiry-date field to the Add/Edit Ingredient screen.
 - Added a DatePickerDialog to prevent invalid manual date entry.
@@ -330,7 +293,7 @@ Add expiry-date tracking and connect the Settings toggle to a working expiry-war
 - Loaded existing expiry dates when editing pantry items.
 - Displayed expiry dates in pantry RecyclerView rows.
 
-### Part C: Three-Day Expiry Alerts
+### Part C: Three-Day Expiry Alerts using toast not notifications
 
 - Created `ExpiryChecker.java`.
 - Used API 24-compatible date handling with `SimpleDateFormat`, `Date`, and `TimeUnit`.
@@ -343,10 +306,8 @@ Add expiry-date tracking and connect the Settings toggle to a working expiry-war
 ---
 
 ## Commit 13 (Visual Styling and Usability)
-
-### Objective
-
-Improve the application's visual appearance, readability, and usability.
+Improve the application's visual appearance, 
+readability, and usability.
 
 ### Files added or updated
 
@@ -357,7 +318,7 @@ Improve the application's visual appearance, readability, and usability.
 - `item_recipe.xml`
 - `PantryAdapter.java`
 
-### Completed
+### Completed changes added
 
 - Added a Royal Blue application colour scheme.
 - Added a Royal Blue toolbar with white text and icons.
@@ -373,18 +334,18 @@ Improve the application's visual appearance, readability, and usability.
 
 ---
 
-# Current Application Features
+# Current Application Features used in my app
 
-## Pantry Management
+## Pantry section
 
-- Add pantry items.
-- View pantry items.
-- Edit pantry items.
-- Delete pantry items.
-- Store optional expiry dates.
-- Display near-expiry warnings.
+- Add pantry items. (C)
+- View pantry items. (R)
+- Edit pantry items. (U)
+- Delete pantry items. (D)
+- Store optional expiry dates. 
+- Display near-expiry warnings in red for toggle.
 
-## Recipe Features
+## Recipe section
 
 - 18 seeded recipes.
 - Strict pantry-to-recipe matching.
@@ -392,12 +353,12 @@ Improve the application's visual appearance, readability, and usability.
 - Recipe Detail screen.
 - Ingredient and preparation-step display.
 
-## Storage
+## Storage and DB chosen
 
 - SQLite database for pantry and recipe data.
 - SharedPreferences for the expiry-alert setting.
 
-## User Interface
+## UI and colors i chose
 
 - RecyclerView lists with custom adapters.
 - Toolbar overflow navigation.
@@ -406,11 +367,3 @@ Improve the application's visual appearance, readability, and usability.
 - Royal Blue theme.
 - Card-style pantry and recipe rows.
 - Conditional expiry highlighting.
-
-## Development Practice
-
-- Android application written in Java.
-- Incremental Git development from the beginning.
-- 13 meaningful development commits.
-- Descriptive commit messages.
-- README and development notes maintained in the repository.
